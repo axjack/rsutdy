@@ -1,0 +1,79 @@
+---
+title: "初めてのRmd"
+subtitle: "見よう見まねでやってみよう"
+author: "axjack"
+date: "2018/5/1"
+output: 
+  html_document:
+    toc: true
+    number_section: false
+---
+
+### データを作る
+
+```{r}
+df <- data.frame(a = sample(1:10,100,replace = T)
+                 ,b = sample(30:40,100,replace = T)
+                 ,c = sample(0:2,100,replace = T)
+                 );
+```
+
+
+### データ操作
+#### データフレームの次元
+```{r}
+dim(df);
+```
+
+#### 要約を表示
+```{r}
+summary(df);
+```
+
+#### 棒グラフ
+```{r}
+barplot(df$a);
+```
+
+#### 集計
+```{r}
+table(df$c);
+```
+
+#### クロス集計
+```{r}
+table(df[c("a","c")]);
+```
+
+#### 部分集合を表示
+```{r}
+subset(df, a + b > 40 & c == 0)
+```
+
+#### 相関係数
+```{r}
+d1 <- c(34,67,89,56,78,77,82);
+d2 <- c(37,60,87,70,66,81,93);
+d.con <- data.frame(d1,d2);
+dr <- cor(d.con);
+
+```
+
+#### 散布図
+```{r}
+pairs(d.con)
+```
+
+#### 回帰分析
+```{r}
+summary(
+  lm(formula = d2 ~ d1, data=d.con)
+)
+```
+
+#### プロット
+```{r}
+plot(d1, d2);
+abline(lm(formula = d2 ~ d1));
+```
+
